@@ -21,8 +21,12 @@ __pycache__/
 *.pth
 *.ckpt
 *.log
+*.out
+*.err
 *.error.txt
+/logs/
 /runs/
+/refernce/
 /wandb/
 /lightning_logs/
 /neurips_paper/coverage_work/
