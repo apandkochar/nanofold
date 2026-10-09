@@ -16,6 +16,7 @@ __pycache__/
 /hf_dataset_export/
 /.pyright/
 /.venv/
+.venv
 /.conda/
 *.pt
 *.pth
