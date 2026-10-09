@@ -18,11 +18,19 @@
 
 ## 1. Core Objective: Learning Under Biological Data Scarcity
 
-Modern structural foundation models (e.g. AlphaFold2 with ~94.2M parameters) achieve remarkable accuracy by training on tens of thousands of experimental structures and billions of metagenomic sequence homologs. However, in regimes where **biological data is scarce** — such as *de novo* designed proteins ($N_{\text{seq}} = 1$), orphan pathogens, or unculturable organisms — these overparameterized models frequently collapse into memorization.
+Modern structural foundation models (e.g. AlphaFold2, AlphaFold 3, ESMFold, Protenix v1/v2, and OpenDDE) achieve accuracy by training on tens of thousands of experimental structures and massive metagenomic sequence databases. However, in regimes where **biological data is scarce** — such as *de novo* designed proteins ($N_{\text{seq}} = 1$), orphan pathogens, or restricted experimental settings — these overparameterized models frequently collapse into memorization.
 
 **Our Core Scientific Objective:**
 > **How can we maximize structural knowledge extraction from small datasets and force the model to learn true folding physics rather than memorizing coevolutionary databases?**
 
+### Pioneering JEPA for Protein Structure Prediction
+To date, **no existing macromolecular structure prediction systems — including frontier models like ESMFold, Protenix (v1/v2), OpenDDE, and AlphaFold2/3 — employ a Joint-Embedding Predictive Architecture (JEPA)** as an encoder for structural imagination. Conventional models jump directly from local pairwise attention maps to raw Cartesian or diffusion coordinates, frequently getting trapped in misfolded local energy minima.
+
+NanoFold v1 marks a **first-of-its-kind exploration into continuous JEPA-style latent imagination for 3D biomolecules**:
+- Instead of unguided coordinate regression, a 16-slot Perceiver module **predicts continuous, global structural tokens in an abstract topological latent space**.
+- This pre-conditions the global fold (radius of gyration, macro-packing, domain orientation) before atomic assembly begins.
+
+### Official Benchmark Constraints
 Under the official nanoFold competition benchmark, every method is strictly constrained to:
 - **Small Dataset**: Exactly **10,000 PDB training chains** (`train.txt`).
 - **Fixed Budget**: Exactly **30,000 optimization updates** at effective batch size 8 (240,000 samples seen).
